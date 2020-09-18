@@ -34,10 +34,13 @@ class DisplayPerformanceData extends Component {
         distances.push(entry.data.distance)
         labels.push(entry.data.message)
       }) 
+
       const data = {
         datasets: [{
           data: distances,
-          label: "Saved distances"
+          label: "Saved distances",
+          backgroundColor: "#555353",
+          pointHoverBackgroundColor: "#CF4E33",
         }],
         labels: labels
       }

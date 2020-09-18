@@ -1,16 +1,24 @@
 import React from "react";
+import { Segment, Form, Button, Grid} from "semantic-ui-react";
+
 
 const LoginForm = ({ submitFormHandler }) => {
   return (
-    <form onSubmit={submitFormHandler} id="login-form">
-      <label>Email</label>
-      <input name="email" type="email" id="email"></input>
+    <Segment inverted id="algo">
+    <Form inverted
+    onSubmit={submitFormHandler} id="login-form">
 
-      <label>Password</label>
-      <input name="password" type="password" id="password"></input>
+      <Form.Input fluid label='Email' placeholder='Email'
+      name="email" type="email" id="email"/>
 
-      <button id="submit">Submit</button>
-    </form>
+      <Form.Input fluid label='Password' placeholder='Password' 
+      name="password" type="password" id="password"/>
+
+      <Button type='submit' id="submit">Submit</Button>
+    </Form>
+
+    </Segment>
+
   );
 };
 

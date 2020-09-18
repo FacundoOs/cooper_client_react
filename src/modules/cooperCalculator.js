@@ -61,7 +61,6 @@ const cooperCalculator = (distance, gender, age) => {
   
 
   distanceRanges.forEach((dRange, index) => {
-    debugger
     if (
       (dRange.match(/>\d*/) && distance >= parseInt(dRange.slice(1), 10)) ||
       (dRange.match(/<\d*/) && distance < parseInt(dRange.slice(1), 10))

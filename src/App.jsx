@@ -4,8 +4,13 @@ import InputFields from "./components/InputFields";
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./modules/auth";
 import DisplayPerformanceData from "./components/DisplayPerformanceData";
-import { Button} from 'semantic-ui-react';
-
+import {
+  Button,
+  Divider,
+  Grid,
+  Image,
+  Segment,
+} from "semantic-ui-react";
 
 class App extends Component {
   state = {
@@ -34,7 +39,8 @@ class App extends Component {
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
-            <Button inverted color='blue'
+            <Button
+              color="blue"
               id="login"
               onClick={() => this.setState({ renderLoginForm: true })}
             >
@@ -46,33 +52,58 @@ class App extends Component {
         break;
       case authenticated:
         renderLogin = (
-          <p id="message" >Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+          <Segment inverted textAlign="center">
+            <p id="message">
+              Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
+            </p>
+          </Segment>
         );
         if (this.state.renderIndex) {
           performanceDataIndex = (
-            <>
-              <DisplayPerformanceData 
-                updateIndex={this.state.updateIndex}
-                indexUpdated={() => this.setState({ updateIndex: false })}
-              />
-              <button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
-            </>
-          )
+            <Grid columns={2} divided>
+              <Grid.Row >
+                <Grid.Column verticalAlign='middle'>
+                  <DisplayPerformanceData 
+                    updateIndex={this.state.updateIndex}
+                    indexUpdated={() => this.setState({ updateIndex: false })}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Image src="https://www.thewellst.com/wp-content/uploads/2018/07/Cooper-Test-Results-Table.jpg" />
+                </Grid.Column>
+              </Grid.Row>
+              <Button
+                color="blue"
+                onClick={() => this.setState({ renderIndex: false })}
+              >
+                Hide past entries
+              </Button>
+            </Grid>
+          );
         } else {
           performanceDataIndex = (
-            <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
-          )}
+            <Button
+              color="blue"
+              id="show-index"
+              onClick={() => this.setState({ renderIndex: true })}
+            >
+              Show past entries
+            </Button>
+          );
+        }
         break;
-        default:
-          break;
+      default:
+        break;
     }
     return (
       <>
-      <h1>Cooper Test</h1>
+        <h1>Cooper Test</h1>
+        <Divider section />
+
         <InputFields onChangeHandler={this.onChangeHandler} />
         {renderLogin}
 
-        <DisplayCooperResult 
+        <DisplayCooperResult
           distance={this.state.distance}
           gender={this.state.gender}
           age={this.state.age}
