@@ -1,12 +1,13 @@
 import React from "react";
+import { Segment, Form } from "semantic-ui-react";
 
 const InputFields = ({ onChangeHandler }) => {
   return (
-    <>
+    <Segment inverted >
+      <Form inverted>
+      <Form.Group widths='equal'>
       <label>Distance</label>
-      <input label={{ basic: true, content: 'mts' }}
-    labelPosition='left'
-    placeholder='Enter distance...'
+      <input 
       onChange={onChangeHandler} name="distance" id="distance"></input>
 
       <select onChange={onChangeHandler} name="gender" id="gender">
@@ -16,7 +17,9 @@ const InputFields = ({ onChangeHandler }) => {
 
       <label>Age</label>
       <input onChange={onChangeHandler} name="age" id="age"></input>
-    </>
+      </Form.Group>
+      </Form>
+    </Segment>
   );
 };
 

@@ -68,10 +68,11 @@ class App extends Component {
     }
     return (
       <>
+      <h1>Cooper Test</h1>
         <InputFields onChangeHandler={this.onChangeHandler} />
         {renderLogin}
 
-        <DisplayCooperResult
+        <DisplayCooperResult 
           distance={this.state.distance}
           gender={this.state.gender}
           age={this.state.age}
